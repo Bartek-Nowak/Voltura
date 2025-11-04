@@ -1,0 +1,112 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "name": "Voltura S1 2025",
+      "type": "Sedan",
+      "engine": "Elektryczny",
+      "info": ["AWD", "400km range"],
+      "price": 100999,
+      "image": "/cars/voltura-zx-2025.png",
+      "images": [
+        "/cars/voltura-zx-2025-4.png",
+        "/cars/voltura-zx-2025-1.png",
+        "/cars/voltura-zx-2025-2.png",
+        "/cars/voltura-zx-2025-3.png"
+      ],
+      "features": {
+        "0-100 km/h": "5.8s",
+        "Maksymalna prędkość": "210 km/h",
+        "Ładowanie": "120 kW DC",
+        "Pojemność bagażnika": "520 L",
+        "Gwarancja": "5 lat"
+      },
+      "versions": ["Podstawowa", "Sport", "Performance"],
+      "colors": [
+        { "name": "Czarny", "hex": "#1F2937" },
+        { "name": "Biały", "hex": "#F3F4F6" },
+        { "name": "Zielony", "hex": "#28483B" }
+      ],
+      "addons": ["Koła zimowe", "Akcesoria"]
+    },
+    {
+      "id": 2,
+      "name": "Voltura X5 2025",
+      "type": "SUV",
+      "engine": "Hybrydowy",
+      "info": ["AWD", "500km range"],
+      "price": 120999,
+      "image": "/cars/voltura-px-2025.png",
+      "images": [
+        "/cars/voltura-zx-2025-4.png",
+        "/cars/voltura-zx-2025-1.png",
+        "/cars/voltura-zx-2025-2.png",
+        "/cars/voltura-zx-2025-3.png"
+      ],
+      "features": {
+        "0-100 km/h": "5.8s",
+        "Maksymalna prędkość": "210 km/h",
+        "Ładowanie": "120 kW DC",
+        "Pojemność bagażnika": "520 L",
+        "Gwarancja": "5 lat"
+      },
+      "versions": ["Podstawowa", "Sport", "Performance"],
+      "colors": [
+        { "name": "Czarny", "hex": "#1F2937" },
+        { "name": "Biały", "hex": "#F3F4F6" },
+        { "name": "Zielony", "hex": "#28483B" }
+      ],
+      "addons": ["Koła zimowe", "Hak holowniczy", "Akcesoria"]
+    },
+    {
+      "id": 3,
+      "name": "Voltura C3 2025",
+      "type": "Kompakt",
+      "engine": "Elektryczny",
+      "info": ["AWD", "300km range"],
+      "price": 99999,
+      "image": "/cars/voltura-sx-2025.png",
+      "images": [
+        "/cars/voltura-zx-2025-4.png",
+        "/cars/voltura-zx-2025-1.png",
+        "/cars/voltura-zx-2025-2.png",
+        "/cars/voltura-zx-2025-3.png"
+      ],
+      "features": {
+        "0-100 km/h": "5.8s",
+        "Maksymalna prędkość": "210 km/h",
+        "Ładowanie": "120 kW DC",
+        "Pojemność bagażnika": "520 L",
+        "Gwarancja": "5 lat"
+      },
+      "versions": ["Podstawowa", "Sport", "Performance"],
+      "colors": [
+        { "name": "Czarny", "hex": "#1F2937" },
+        { "name": "Biały", "hex": "#F3F4F6" },
+        { "name": "Zielony", "hex": "#28483B" }
+      ],
+      "addons": ["Koła zimowe", "Akcesoria"]
+    }
+  ],
+  "filters": {
+    "types": ["Sedan", "SUV", "Kompakt"],
+    "engines": ["Elektryczny", "Hybrydowy", "Benzynowy"]
+  },
+  "faq": [
+    {
+      "id": 1,
+      "question": "Jakie są korzyści z użytkowania samochodów elektrycznych Voltura?",
+      "answer": "Nasze samochody zapewniają niższe koszty eksploatacji, brak emisji spalin i dostęp do stref czystego transportu."
+    },
+    {
+      "id": 2,
+      "question": "Czy Voltura oferuje wsparcie flotowe dla firm?",
+      "answer": "Tak. Oferujemy kompleksowe rozwiązania flotowe, w tym zarządzanie pojazdami, finansowanie i serwis."
+    },
+    {
+      "id": 3,
+      "question": "Jak wygląda proces zakupu samochodu Voltura?",
+      "answer": "Zakup możesz zrealizować online lub w jednym z naszych salonów partnerskich. Oferujemy także finansowanie leasingowe."
+    }
+  ]
+}
