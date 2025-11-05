@@ -1,6 +1,11 @@
 import api from './axios'
 import type { Car, Filters } from '@/types/car'
 
+type FilterOptions = {
+  types: string[]
+  engines: string[]
+}
+
 export const getCars = async (): Promise<Car[]> => {
   try {
     const response = await api.get<Car[]>('/cars')
@@ -17,8 +22,10 @@ export const getCarsByFilters = async (filters: Filters): Promise<Car[]> => {
 
     if (filters.type) params.type = filters.type
     if (filters.engine) params.engine = filters.engine
-    if (filters.priceFrom !== null) params.price_gte = filters.priceFrom
-    if (filters.priceTo !== null) params.price_lte = filters.priceTo
+    if (filters.priceFrom !== null && filters.priceFrom !== undefined)
+      params.price_gte = filters.priceFrom
+    if (filters.priceTo !== null && filters.priceTo !== undefined)
+      params.price_lte = filters.priceTo
 
     const response = await api.get<Car[]>('/cars', { params })
     return response.data
@@ -28,10 +35,10 @@ export const getCarsByFilters = async (filters: Filters): Promise<Car[]> => {
   }
 }
 
-export const getFilterOptions = async () => {
+export const getFilterOptions = async (): Promise<FilterOptions> => {
   try {
-    const res = await api.get('/filters')
-    return res.data
+    const response = await api.get<FilterOptions>('/filters')
+    return response.data
   } catch (error) {
     console.error('Error fetching filter options:', error)
     throw error
