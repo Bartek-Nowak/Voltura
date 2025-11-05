@@ -36,6 +36,9 @@
       <div class="col-md-4" v-for="car in cars" :key="car.id">
         <CarCard :car="car" @select="openModal" />
       </div>
+      <div v-if="cars.length === 0" class="col-12 text-center py-5">
+        <p class="mb-0">Brak wyników spełniających kryteria filtrowania.</p>
+      </div>
     </div>
     <CarModal v-if="selectedCar" :car="selectedCar" @close="selectedCar = null" />
   </section>
