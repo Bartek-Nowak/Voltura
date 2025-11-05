@@ -5,7 +5,7 @@
         <img :src="logo" alt="Voltura Motors" class="me-2" style="height: 40px;">
         <h5 class="m-0 fw-bold">Voltura Motors</h5>
       </div>
-      <button class="btn btn-success">Zapisz się na jazdę testową</button>
+      <button class="btn btn-success font-secondary fs-6 fw-bold">Zapisz się na jazdę testową</button>
     </div>
   </header>
 </template>
