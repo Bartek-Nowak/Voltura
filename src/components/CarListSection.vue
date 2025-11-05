@@ -1,43 +1,40 @@
 <template>
   <section class="mb-5">
     <h4 class="fw-bold mb-4">Gama naszych samochodów</h4>
-    <div class="d-flex flex-wrap gap-3 align-items-center mb-4">
-      <div class="d-flex align-items-center gap-2">
-        <label class="fw-semibold mb-0">Typ</label>
-        <select v-model="filters.type" class="form-select w-auto">
-          <option value="">Wszystkie</option>
-          <option v-for="type in filtersOptions.types" :key="type" :value="type">
-            {{ type }}
-          </option>
-        </select>
-      </div>
-      <div class="d-flex align-items-center gap-2">
-        <label class="fw-semibold mb-0">Napęd</label>
-        <select v-model="filters.engine" class="form-select w-auto">
-          <option value="">Wszystkie</option>
-          <option v-for="engine in filtersOptions.engines" :key="engine" :value="engine">
-            {{ engine }}
-          </option>
-        </select>
-      </div>
-      <div class="d-flex align-items-center gap-2">
-        <label class="fw-semibold mb-0">Cena:</label>
-        <input v-model.number="filters.priceFrom" type="number" class="form-control w-auto" placeholder="od">
-        <span>-</span>
-        <input v-model.number="filters.priceTo" type="number" class="form-control w-auto" placeholder="do">
-      </div>
-      <button class="btn btn-dark" @click="fetchCars">Filtruj</button>
-    </div>
-    <div class="row g-3">
-      <div class="col-md-4" v-for="car in cars" :key="car.id">
-        <div class="card h-100">
-          <img :src="car.image" class="card-img-top" :alt="car.name">
-          <div class="card-body">
-            <h6 class="card-title fw-bold">{{ car.name }}</h6>
-            <p class="text-muted small mb-3">od {{ formatPrice(car.price) }}</p>
-            <button class="btn btn-primary w-100" @click="openModal(car)">Sprawdź</button>
-          </div>
+    <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 px-4 py-3 border b-radius bg-white">
+      <div class="d-flex flex-wrap gap-3">
+        <div class="d-flex align-items-center gap-2">
+          <label class="mb-0">Typ</label>
+          <select v-model="filters.type" class="form-select">
+            <option value="">Wszystkie</option>
+            <option v-for="type in filtersOptions.types" :key="type" :value="type">
+              {{ type }}
+            </option>
+          </select>
         </div>
+        <div class="d-flex align-items-center gap-2">
+          <label class="mb-0">Napęd</label>
+          <select v-model="filters.engine" class="form-select">
+            <option value="">Wszystkie</option>
+            <option v-for="engine in filtersOptions.engines" :key="engine" :value="engine">
+              {{ engine }}
+            </option>
+          </select>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <label class="mb-0">Cena</label>
+          <input type="text" class="form-control" placeholder="od" :value="formatNumber(filters.priceFrom)"
+            @input="onPriceFromInput($event)">
+          <span>-</span>
+          <input type="text" class="form-control" placeholder="do" :value="formatNumber(filters.priceTo)"
+            @input="onPriceToInput($event)">
+        </div>
+      </div>
+      <button class="btn btn-success filter-btn" @click="fetchCars">Filtruj</button>
+    </div>
+    <div class="row g-5">
+      <div class="col-md-4" v-for="car in cars" :key="car.id">
+        <CarCard :car="car" @select="openModal" />
       </div>
     </div>
     <CarModal v-if="selectedCar" :car="selectedCar" @close="selectedCar = null" />
@@ -48,7 +45,7 @@
 import { ref, onMounted } from 'vue'
 import { getCarsByFilters, getFilterOptions } from '@/api/cars'
 import CarModal from '@/components/CarModal.vue'
-import { formatPrice } from '@/utils/formatters'
+import CarCard from '@/components/CarCard.vue'
 import type { Car, Filters } from '@/types/car'
 
 const filtersOptions = ref<{ types: string[]; engines: string[] }>({
@@ -86,8 +83,62 @@ const openModal = (car: Car) => {
   selectedCar.value = car
 }
 
+const formatNumber = (value: number | null | undefined): string => {
+  if (value === null || value === undefined) return ''
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+}
+
+const parseNumber = (value: string) => {
+  return value.replace(/\s/g, '') === '' ? null : Number(value.replace(/\s/g, ''))
+}
+
+const onPriceFromInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  filters.value.priceFrom = parseNumber(target.value)
+}
+
+const onPriceToInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  filters.value.priceTo = parseNumber(target.value)
+}
+
 onMounted(() => {
   fetchFilters()
   fetchCars()
 })
 </script>
+
+<style scoped>
+.filter-btn {
+  width: 135px;
+  height: 44px;
+  font-size: 0.875rem;
+}
+
+select {
+  width: 160px;
+  font-size: 0.875rem;
+}
+
+input {
+  width: 81px;
+  font-size: 0.875rem;
+  background-color: white;
+}
+
+label {
+  font-size: 0.875rem;
+}
+
+select.form-select::-ms-expand {
+  display: none;
+}
+
+select.form-select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  padding-right: 0.5rem;
+}
+</style>
