@@ -1,6 +1,8 @@
 <template>
   <footer class="footer">
-    <small>© 2025 Voltura Motors</small>
+    <div class="container">
+      <small>© 2025 Voltura Motors</small>
+    </div>
   </footer>
 </template>
 
@@ -13,5 +15,8 @@
   text-align: left;
   font-size: 0.875rem;
   padding-left: 1rem;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
 }
 </style>
